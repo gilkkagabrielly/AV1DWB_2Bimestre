@@ -6,7 +6,6 @@ async function buscarDados() {
   const cards = document.getElementById("cards");
 
   try {
-    // estado inicial
     loading.style.display = "block";
     error.textContent = "";
     cards.innerHTML = "";
@@ -30,31 +29,35 @@ async function buscarDados() {
 
       cards.innerHTML += `
         <div class="col-md-4 mb-4">
-          <div class="card h-100 shadow-sm">
+          <a href="detalhes.html?id=${personagem.id}" class="text-decoration-none text-dark">
 
-            <img src="${personagem.image}" class="card-img-top" alt="${personagem.name}">
+            <div class="card h-100 shadow-sm">
 
-            <div class="card-body">
-              <h5 class="card-title">${personagem.name}</h5>
+              <img src="${personagem.image}" class="card-img-top" alt="${personagem.name}">
 
-              <p>
-                Status:
-                <span class="badge bg-${statusClass}">
-                  ${personagem.status}
-                </span>
-              </p>
+              <div class="card-body">
+                <h5 class="card-title">${personagem.name}</h5>
 
-              <p>Espécie: ${personagem.species}</p>
+                <p>
+                  Status:
+                  <span class="badge bg-${statusClass}">
+                    ${personagem.status}
+                  </span>
+                </p>
+
+                <p>Espécie: ${personagem.species}</p>
+              </div>
+
             </div>
 
-          </div>
+          </a>
         </div>
       `;
     });
 
   } catch (err) {
     loading.style.display = "none";
-    error.textContent = "Erro ao carregar dados da API.";
+    error.textContent = "Erro ao carregar dados.";
     console.error(err);
   }
 }
